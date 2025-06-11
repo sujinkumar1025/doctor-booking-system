@@ -1,0 +1,97 @@
+.doctors-page-container {
+  max-width: 1200px;
+  margin: 120px auto;
+  padding: 0 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 40px;
+  color: #00796b;
+}
+
+/* Container for cards - single column stack */
+.doctors-cards-column {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Doctors card: horizontal flex container */
+.doctors-card {
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 25px 30px;
+  display: flex;
+  justify-content: space-between; /* space between left info and right button */
+  align-items: center; /* vertical center */
+  width: 100%;
+  transition: box-shadow 0.3s ease;
+}
+
+.doctors-card:hover {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* Left side info */
+.doctors-info {
+  flex: 1; /* take all available width */
+}
+
+.doctors-info h3 {
+  margin: 0 0 15px 0;
+  color: #34495e;
+  font-size: 1.6rem;
+}
+
+/* Info paragraphs */
+.doctors-info p {
+  margin: 6px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+/* Booking button aligned vertically center on right */
+.book-button {
+  background-color: #3498db;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 14px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 17px;
+  transition: background-color 0.3s ease;
+  margin-left: 30px;
+  white-space: nowrap;
+  /* button won't stretch vertically, just center */
+  align-self: center;
+}
+
+.book-button:hover {
+  background-color: #2980b9;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .doctors-page-container {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .doctors-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .book-button {
+    margin-left: 0;
+    margin-top: 15px;
+    align-self: stretch;
+    width: 100%;
+    text-align: center;
+  }
+}

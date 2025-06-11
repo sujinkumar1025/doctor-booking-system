@@ -1,0 +1,181 @@
+/* Base Styles */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 10px;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100; /* keep on top */
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  margin-right: 10px;
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #077a89, #00796b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 1px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.navbar a {
+  position: relative;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  margin-left: 40px;
+  white-space: nowrap;
+}
+
+/* Underline hover effect */
+.navbar a::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: aliceblue;
+  transition: width 0.3s ease;
+}
+
+.navbar a:hover::before {
+  width: 100%;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: row;
+    align-items:center;
+    padding: 10px 20px;
+    justify-content: space-between;
+  }
+
+  .logo {
+    margin-bottom: 0;
+  }
+
+  .logo-text {
+    font-size: 28px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .navbar a {
+    margin: 10px 0;
+    margin-left: 0;
+  }
+}
+
+/* === New Styles for Responsive Hamburger Menu === */
+
+/* Hide checkbox input */
+.menu-btn {
+  display: none;
+}
+
+/* Hamburger Icon */
+.menu-icon {
+  display: none;
+  cursor: pointer;
+  padding: 20px;
+  position: relative;
+  user-select: none;
+  z-index: 101;
+}
+
+.menu-icon .navicon {
+  background: #fff;
+  display: block;
+  height: 2px;
+  width: 22px;
+  position: relative;
+  transition: background 0.2s ease-out;
+}
+
+.menu-icon .navicon::before,
+.menu-icon .navicon::after {
+  content: '';
+  background: #fff;
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transition: all 0.2s ease-out;
+}
+
+.menu-icon .navicon::before {
+  top: 6px;
+}
+
+.menu-icon .navicon::after {
+  top: -6px;
+}
+
+/* Transform hamburger to X when open */
+.menu-btn:checked + .menu-icon .navicon {
+  background: transparent;
+}
+
+.menu-btn:checked + .menu-icon .navicon::before {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+.menu-btn:checked + .menu-icon .navicon::after {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .navbar {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: rgba(0, 121, 107, 0.95);
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+
+  .navbar.open {
+    display: flex;
+  }
+}
