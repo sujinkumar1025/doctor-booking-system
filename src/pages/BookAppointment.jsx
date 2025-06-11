@@ -36,22 +36,31 @@ export default function BookAppointment() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  // Update formData with query params on mount or URL change
+  // Load department and doctor from query params
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const dep = params.get('department') || '';
     const doc = params.get('doctor') || '';
 
-    if (dep || doc) {
+    if (dep) {
       setFormData(prev => ({
         ...prev,
         department: dep,
-        doctor: doc,
+        doctor: '', // Clear doctor first
       }));
+
+      // Set doctor after department is set to ensure dropdown updates
+      if (doc) {
+        setTimeout(() => {
+          setFormData(prev => ({
+            ...prev,
+            doctor: doc,
+          }));
+        }, 0);
+      }
     }
   }, [location.search]);
 
-  // List of doctors for the selected department
   const doctorsList = formData.department ? doctorsByDepartment[formData.department] || [] : [];
 
   const handleChange = (e) => {
@@ -59,13 +68,13 @@ export default function BookAppointment() {
     setFormData(prev => ({
       ...prev,
       [name]: value,
-      ...(name === 'department' ? { doctor: '' } : {}),
+      ...(name === 'department' ? { doctor: '' } : {}), // Reset doctor on department change
     }));
   };
 
   const sendEmail = (data) => {
     console.log('Sending email with data:', data);
-    // Placeholder for actual email sending logic
+    // Simulate email sending
   };
 
   const handleSubmit = (e) => {
@@ -157,10 +166,16 @@ export default function BookAppointment() {
           value={formData.doctor}
           onChange={handleChange}
           required
-          disabled={!formData.department}
+          disabled={!formData.department || doctorsList.length === 0}
           className="book-appointment-select"
         >
-          <option value="">{formData.department ? 'Select Doctor' : 'Select Department First'}</option>
+          <option value="">
+            {!formData.department
+              ? 'Select Department First'
+              : doctorsList.length === 0
+              ? 'No Doctors Available'
+              : 'Select Doctor'}
+          </option>
           {doctorsList.map(doc => (
             <option key={doc.id} value={doc.name}>{doc.name}</option>
           ))}

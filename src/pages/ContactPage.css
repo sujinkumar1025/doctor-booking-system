@@ -31,6 +31,8 @@
 .contact-form h2, .contact-info h2 {
   margin-bottom: 20px;
   color: aliceblue;
+  font-family: 'Poller One', cursive;
+
 }
 
 .contact-form form {
@@ -78,4 +80,5 @@
 
 .contact-info p {
   margin: 10px 0;
+  color: aliceblue;
 }

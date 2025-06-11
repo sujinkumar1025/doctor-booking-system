@@ -44,8 +44,10 @@ export default function DoctorPage() {
   const navigate = useNavigate();
 
   const handleBook = (department, doctor) => {
-    navigate(`/book-appointment?department=${encodeURIComponent(department.toLowerCase())}&doctor=${encodeURIComponent(doctor)}`);
-  };
+  const dep = department.toLowerCase(); // match department IDs
+  const doc = encodeURIComponent(doctor);
+  navigate(`/book?department=${dep}&doctor=${doc}`);
+};
 
   return (
     <div className="doctors-page-container">
