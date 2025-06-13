@@ -125,6 +125,11 @@
   justify-content: space-between;
 }
 
+/* GLOBAL fix to prevent horizontal scroll */
+body {
+  overflow-x: hidden;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .health-search-container {
@@ -157,8 +162,21 @@
     border-radius: 12px;
   }
 
-  .hex-row.bottom {
+  .hex-row {
     flex-direction: column;
     align-items: center;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-controls {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .search-input,
+  .doctor-dropdown {
+    font-size: 14px;
   }
 }
