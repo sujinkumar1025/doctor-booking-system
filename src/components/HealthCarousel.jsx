@@ -9,28 +9,28 @@ const tips = [
     title: 'Heart Health',
     text: '30 minutes of walking daily improves cardiovascular health.',
     cta: 'Book a Heart Checkup',
-    link: '/doctors?department=cardiology'
+    link: '/book?department=cardiology'
   },
   {
     icon: <FaLeaf size={40} color="#4caf50" />,
     title: 'Eat Green',
     text: 'Leafy greens help your immune system stay strong.',
     cta: 'See Nutrition Tips',
-    link: '/blog/nutrition'
+    link: '/nutrition'
   },
   {
     icon: <FaSmile size={40} color="#ff9800" />,
     title: 'Mental Wellness',
     text: 'Take 10 minutes daily to unplug and breathe deeply.',
     cta: 'Talk to a Specialist',
-    link: '/doctors?department=mental-health'
+    link: '/doctor'
   },
   {
     icon: <FaStethoscope size={40} color="#3f51b5" />,
     title: 'Routine Checkup',
     text: 'Annual physical exams help catch problems early.',
     cta: 'Book a Checkup',
-    link: '/appointments'
+    link: '/doctor?department=cardiology' // 👈 This is the route it navigates to
   }
 ];
 
