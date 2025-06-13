@@ -1,55 +1,43 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './DoctorCardsFlip.css';
+import doctor4 from '../assets/doctor4.jpg';
+import doctor5 from '../assets/doctor5.jpg';
+import doctor6 from '../assets/doctor6.jpg';
+import doctor7 from '../assets/doctor7.jpg';
 
-// Doctors data with image file names only
 const doctors = [
   {
     id: 1,
     name: 'Dr. Alice Smith',
     department: 'Cardiology',
-    imagePath: 'doctor4.jpg',
+    imagePath: doctor4,
     tips: 'Maintain a heart-healthy diet and exercise regularly.',
   },
   {
     id: 2,
     name: 'Dr. Bob Johnson',
     department: 'Neurology',
-    imagePath: 'doctor5.jpg',
+    imagePath: doctor5,
     tips: 'Get enough sleep and manage stress to support brain health.',
   },
   {
     id: 3,
     name: 'Dr. Emily Davis',
     department: 'Pediatrics',
-    imagePath: 'doctor6.jpg',
+    imagePath: doctor6,
     tips: 'Ensure your child gets regular vaccinations and balanced nutrition.',
   },
   {
     id: 4,
     name: 'Dr. Ryan Lee',
     department: 'Dermatology',
-    imagePath: 'doctor7.jpg',
+    imagePath: doctor7,
     tips: 'Protect your skin from UV exposure and hydrate regularly.',
   },
 ];
 
 export default function DoctorCardsFlip() {
   const [flippedIds, setFlippedIds] = useState([]);
-  const [images, setImages] = useState({});
-
-  // Dynamically import images when component mounts
-  useEffect(() => {
-    doctors.forEach(async (doc) => {
-      if (!images[doc.id]) {
-        try {
-const imgModule = await import(/* @vite-ignore */ `../assets/${doc.imagePath}`);
-          setImages((prev) => ({ ...prev, [doc.id]: imgModule.default }));
-        } catch (error) {
-          console.error(`Failed to load image for doctor id ${doc.id}:`, error);
-        }
-      }
-    });
-  }, []); // Run only once on mount
 
   const toggleFlip = (id) => {
     setFlippedIds((prev) =>
@@ -61,7 +49,6 @@ const imgModule = await import(/* @vite-ignore */ `../assets/${doc.imagePath}`);
     <div className="doctor-cards-container">
       {doctors.map((doc) => {
         const isFlipped = flippedIds.includes(doc.id);
-        const imageSrc = images[doc.id];
 
         return (
           <div
@@ -71,23 +58,12 @@ const imgModule = await import(/* @vite-ignore */ `../assets/${doc.imagePath}`);
           >
             <div className="card-inner">
               <div className="card-front">
-                {imageSrc ? (
-                  <img
-                    src={imageSrc}
-                    alt={doc.name}
-                    className="doctor-image"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div
-                    className="image-placeholder"
-                    style={{
-                      height: '200px',
-                      backgroundColor: '#ccc',
-                      borderRadius: '8px',
-                    }}
-                  />
-                )}
+                <img
+                  src={doc.imagePath}
+                  alt={doc.name}
+                  className="doctor-image"
+                  loading="lazy"
+                />
                 <div className="doctor-info">
                   <h3>{doc.name}</h3>
                   <p>{doc.department}</p>
