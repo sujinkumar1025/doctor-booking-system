@@ -1,9 +1,12 @@
+/* About.css */
+
 .about-wrapper {
   max-width: 1200px;
   margin: 120px auto 40px;
   padding: 0 20px;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .about-container {
@@ -16,12 +19,14 @@
   border-radius: 12px;
   color: #f1fdfd;
   padding: 40px;
+  box-sizing: border-box;
 }
 
 .about-left,
 .about-right {
   flex: 1 1 45%;
   min-width: 300px;
+  box-sizing: border-box;
 }
 
 .about-left h2 {
@@ -45,19 +50,36 @@
   object-fit: cover;
 }
 
-/* Responsive */
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .about-container {
     flex-direction: column;
     text-align: center;
+    padding: 30px 20px;
   }
 
   .about-left,
   .about-right {
     width: 100%;
+    text-align: center;
   }
 
   .about-img {
     margin-top: 20px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-left h2 {
+    font-size: 24px;
+  }
+
+  .about-left p {
+    font-size: 14px;
+  }
+
+  .about-container {
+    padding: 20px 10px;
   }
 }
